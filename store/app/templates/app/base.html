@@ -1,0 +1,65 @@
+{% load static %}
+{% load app_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="{% static 'app/images/icon.ico' %}" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        li {
+            list-style-type: none;
+        }
+
+        ul {
+            margin-left: 0;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <ul>
+            {% if request.user.is_authenticated %}
+            {% get_up_menu_login as up_menu %}
+            {% else %}
+            {% get_up_menu_logout as up_menu %}
+            {% endif %}
+            {% for um in up_menu %}
+            <li><a href="{% url um.url_name %}" style="text-decoration: none; color:#483D8B; ">{{um.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </header>
+
+    <div id="categories-menu">
+        {% get_categories as categories %}
+        <ul>
+            --- Категории ---
+            {% for c in categories %}
+            <li><a href="{{ c.get_absolute_url }}" style="text-decoration: none; color:#483D8B; ">{{c.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% get_down_menu as down_menu %}
+        <ul>
+            {% for dm in down_menu %}
+            <li><a href="{% url dm.url_name %}" style="text-decoration: none; color:#483D8B; ">{{dm.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </footer>
+
+</body>
+
+</html>

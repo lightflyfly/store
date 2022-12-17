@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="orders-list">
+    {% if not products %}
+    Заказов нет
+    {% else %}
+    <ul>
+        {% for p in products %}
+        <li>Заказ №{{p.order}}: {{p.product}}, цена за шт. {{p.price}} руб., {{p.quantity}} шт. — итого {{ p.get_cost }}
+            руб.
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

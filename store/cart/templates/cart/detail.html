@@ -1,0 +1,64 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="cart">
+    <h2>Корзина покупок</h2>
+    {% if not cart %}
+    <p>Корзина пуста</p>
+    {% else %}
+    <table class="cart-contents">
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Товар</th>
+                <th>Обновить кол-во</th>
+                <th>Удалить</th>
+                <th>Кол-во</th>
+                <th>Цена за шт</th>
+                <th>Общая стоимость</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            {% with product=item.product %}
+            <tr class="parameters">
+                <td class="image">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{product.image.url}}" width="200" border="0">
+                    </a>
+                </td>
+                <td class="product-name">{{ product.name }}</td>
+                <td class="update-quantity">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="Обновить">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td class="remove-num"><a href="{% url 'cart:cart_remove' product.id %}"
+                        style="text-decoration: none; color:#483D8B; ">Удалить</a></td>
+                <td class="quantity">
+                    {{ item.quantity }}
+                </td>
+                <td class="num">{{ item.price }} руб.</td>
+                <td class="num">{{ item.total_price }} руб.</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+            <tr class="total">
+                <td>Всего: {{ cart.get_total_price }} руб.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="cart-button">
+    <p class="text-right">
+        <a href="{% url 'orders:order_create' %}" class="button" style="text-decoration: none; color:#483D8B; ">Оформить
+            заказ</a>
+    </p>
+    {% endif %}
+</div>
+{% endblock %}

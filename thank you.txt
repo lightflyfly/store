@@ -1,0 +1,4 @@
+Thank you
+for structure https://github.com/selfedu-rus/django-lessons
+for cart and orders: https://github.com/PacktPublishing/Django-3-by-Example/tree/master/Chapter08
+for search: https://github.com/wsvincent/django-search-tutorial

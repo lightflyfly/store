@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<form method="post" class="login-form">
+    {% csrf_token %}
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}} </label>{{ f }}</p>
+    {% endfor %}
+    <button type="submit">Войти</button>
+</form>
+<div class="registration-link">
+    <br>
+    <a href="{% url 'registration' %}" style="text-decoration: none; color:#483D8B; ">Регистрация</a>
+</div>
+{% endblock %}
