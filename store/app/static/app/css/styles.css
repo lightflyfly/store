@@ -273,6 +273,10 @@ button:not(.menu-button):hover {
     margin: 7px -20px;
 }
 
+.order-form p button {
+    margin: 7px 0px;
+}
+
 .update-form p {
     margin: 14px 20px;
 }
@@ -308,7 +312,4 @@ select {
     font: inherit;
     padding: 3px;
     background-color: #e3fbff;
-
-    
-
 }
