@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="info">
+    <p>Введите новый email</p>
+    <form action="update_record/" method="post" class="update-form">
+        {% csrf_token %}
+        <p><input name="email" value="{{ user.email }}"></p>
+        <button type="submit">Изменить</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix {
+    clear: both;
+}
+
+body {
+    background-color: #e3fbff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    /* Прижать footer к низу страницы */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    height: 50px;
+    line-height: 50px;
+    margin: 7px;
+}
+
+footer {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 7px;
+    height: 30px;
+    line-height: 30px;
+
+    /* Прижать footer к низу страницы */
+    margin-top: auto;
+}
+
+li {
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+ul {
+    margin-left: 10px;
+    padding-left: 0;
+}
+
+main {
+    margin-bottom: 7px;
+}
+
+p,
+h3,
+table {
+    color: #293b3f;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    grid-gap: 14px;
+    margin: 7px 7px;
+}
+
+article {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 7px 0px;
+
+    align-items: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-self: stretch;
+    position: relative;
+    user-select: text;
+}
+
+article p {
+    margin: 7px 0px;
+}
+
+article a {
+    text-decoration: none;
+    color: #293b3f;
+}
+
+article {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 0px;
+    text-align: center;
+
+    justify-content: center;
+}
+
+.info {
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 7px 7px;
+}
+
+.info p,
+.info h3,
+.cart-add {
+    margin: 7px 20px;
+}
+
+.order-info {
+    margin-bottom: 20px;
+}
+
+.total-price {
+    margin-top: 20px;
+}
+
+.form-point {
+    margin-bottom: 20px;
+}
+
+.up-menu-list {
+    display: flex;
+    list-style: none;
+}
+
+.down-menu-link {
+    text-decoration: none;
+    color: #293b3f;
+    float: right;
+    margin-right: 10px;
+}
+
+.down-menu-link:hover {
+    color: #2b6570;
+}
+
+.remove-link {
+    text-decoration: none;
+    color: #293b3f;
+}
+
+.menu-button {
+    background-color: #95d4e2;
+    color: white;
+    padding: 12px;
+    font-size: medium;
+    border: none;
+    border-radius: 14px;
+    min-width: max-content;
+}
+
+#categories-menu {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #95d4e2;
+    min-width: max-content;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #2b6570;
+    padding: 3px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #5bcae0;
+}
+
+/* Показать выпадающее меню при наведении курсора */
+#categories-menu:hover .dropdown-content {
+    display: block;
+}
+
+.menu-button:hover {
+    background-color: #5bcae0;
+    cursor: pointer;
+}
+
+.logo {
+    background: url('../images/logo.png') no-repeat;
+    width: 135px;
+    height: 40px;
+    margin: 5px;
+}
+
+.search-input {
+    margin-left: 14%;
+    border: 0;
+    border-bottom: 2px solid #eee;
+    padding: 4px;
+    outline: none;
+    color: #2b6570;
+    height: 25px;
+    width: 300px;
+    font-size: medium;
+    position: relative;
+    margin-right: auto;
+}
+
+.cart-contents {
+    width: 80%;
+    margin: 0px 17px;
+    border-spacing: 0;
+}
+
+th, td {
+    text-align: center;
+ }
+
+th {
+    font-weight: normal;
+    border-bottom: 2px solid #5bcae0;
+    padding: 10px 8px;
+}
+
+td {
+    padding: 9px 8px;
+}
+
+tr:hover td {
+    color: #5bcae0;
+}
+
+td {
+    border-bottom: 1px solid #ccc;
+    padding: 9px 8px;
+    transition: .3s linear;
+}
+
+button:not(.menu-button) {
+    margin: 7px 20px;
+    background-color: #95d4e2;
+    color: white;
+    padding: 12px;
+    font-size: medium;
+    border: none;
+    border-radius: 14px;
+    min-width: max-content;
+}
+
+button:not(.menu-button) {
+    background-color: #95d4e2;
+    color: white;
+    padding: 12px;
+    font-size: medium;
+    border: none;
+    border-radius: 14px;
+    min-width: max-content;
+}
+
+button:not(.menu-button):hover {
+    background-color: #5bcae0;
+    cursor: pointer;
+}
+
+.cart-add p {
+    margin: 7px -20px;
+}
+
+.update-form p {
+    margin: 14px 20px;
+}
+
+.registration,
+.login {
+    margin-top: 20px;
+}
+
+input:not(.search-input) {
+    border: 0;
+    border-bottom: 2px solid #eee;
+    padding: 4px;
+    outline: none;
+    height: 25px;
+    width: 250px;
+    font-size: medium;
+    position: relative;
+    margin-right: auto;
+}
+
+textarea {
+    resize: none;
+    border: 2px solid #eee;
+    outline: none;
+    padding: 4px;
+    font: inherit;
+}
+
+select {
+    border: 0;
+    outline: none;
+    font: inherit;
+    padding: 3px;
+    background-color: #e3fbff;
+
+    
+
+}
