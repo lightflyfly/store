@@ -9,7 +9,7 @@ class Product(models.Model):
                                  verbose_name='Категория')
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, verbose_name='Изображение')
     description = models.TextField(blank=True, verbose_name='Описание')
-    price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Цена')
+    price = models.DecimalField(max_digits=15, decimal_places=0, verbose_name='Цена')
     available = models.BooleanField(default=True, verbose_name='Наличие')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
     updated = models.DateTimeField(auto_now=True, verbose_name='Последнее изменение')
@@ -96,7 +96,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.PROTECT, verbose_name='Заказ')
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.PROTECT, verbose_name='Товар')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена за шт.')
+    price = models.DecimalField(max_digits=10, decimal_places=0, verbose_name='Цена за шт.')
     quantity = models.PositiveIntegerField(default=1, verbose_name='Количество')
 
     def __str__(self):

@@ -1,8 +1,8 @@
 {% extends 'app/base.html' %}
 {% block content %}
-<div class="products-list">
-    <p>{{product.name}}</p>
-    <p><img src="{{product.image.url}}" width="400" border="0"></p>
+<div class="info">
+    <h3>{{product.name}}</h3>
+    <p><img src="{{product.image.url}}" width="400"></p>
     <p>{{product.description}}</p>
     <p>{{product.price}} руб.</p>
     {% if product.available %}
@@ -10,10 +10,11 @@
     {% else %}
     <p>Нет в наличии</p>
     {% endif %}
+
+    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="cart-add">
+        {% csrf_token %}
+        {{ cart_product_form }}
+        <p><button type="submit">В корзину</button></p>
+    </form>
 </div>
-<form action="{% url 'cart:cart_add' product.id %}" method="post" class="cart-add">
-    {{ cart_product_form }}
-    {% csrf_token %}
-    <input type="submit" value="В корзину">
-</form>
 {% endblock %}

@@ -1,17 +1,15 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-<div class="orders-list">
+<div class="info">
+    <h3>Ваши заказы</h3>
     {% if not products %}
     Заказов нет
     {% else %}
-    <ul>
-        {% for p in products %}
-        <li>Заказ №{{p.order}}: {{p.product}}, цена за шт. {{p.price}} руб., {{p.quantity}} шт. — итого {{ p.get_cost }}
-            руб.
-        </li>
-        {% endfor %}
-    </ul>
+    {% for p in products %}
+    <p>Заказ №{{p.order}}: {{p.product}}, цена за шт. {{p.price}} руб., {{p.quantity}} шт. — итого {{ p.get_cost }} руб.
+    </p>
+    {% endfor %}
     {% endif %}
 </div>
 {% endblock %}

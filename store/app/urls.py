@@ -15,6 +15,8 @@ urlpatterns = [
     path('contact/thank_you/', ContactFeedback.as_view(), name='contact_feedback'),
     path('page_not_found/', page_not_found, name='page_not_found'),
     path('search/', Search.as_view(), name='search'),
+    path('update/', update, name='update'),
+    path('update/update_record/', update_record, name='update_record'),
 ]
 
 

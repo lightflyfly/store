@@ -1,16 +1,22 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-
-<form method="post" class="login-form">
-    {% csrf_token %}
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}} </label>{{ f }}</p>
-    {% endfor %}
-    <button type="submit">Войти</button>
-</form>
-<div class="registration-link">
-    <br>
-    <a href="{% url 'registration' %}" style="text-decoration: none; color:#483D8B; ">Регистрация</a>
+<div class="info">
+    {% if request.user.is_authenticated %}
+    <p>Вы уже авторизованы</p>
+    {% else %}
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {% for input in form %}
+        <p>{{ input.label_tag }}</p>
+        <p>{{ input }}</p>
+        {% endfor %}
+        <button type="submit">Войти</button>
+    </form>
+    <div class="registration">
+        <p>Нет аккаунта?</p>
+        <button onclick="location.href = '/registration'">Зарегистрироваться</button>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -34,6 +34,11 @@ class RegisterUserForm(UserCreationForm):
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields:
+            self.fields[f].label_suffix = ''
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -42,3 +47,8 @@ class RegisterUserForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields:
+            self.fields[f].label_suffix = ''

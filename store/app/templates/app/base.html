@@ -9,42 +9,44 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="{% static 'app/images/icon.ico' %}" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        li {
-            list-style-type: none;
-        }
-
-        ul {
-            margin-left: 0;
-            padding-left: 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/styles.css' %}" />
 </head>
 
 <body>
     <header>
-        <ul>
+        <ul class="up-menu-list">
+
+            <li><a href="{% url 'main' %}"><div class="logo"></div></a></li>
+
+            <li>
+                <div id="categories-menu">
+                    <button class="menu-button">Категории</button>
+                    {% get_categories as categories %}
+                    <div class="dropdown-content">
+                        {% for c in categories %}
+                        <a href="{{ c.get_absolute_url }}" class="category-link">{{c.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+
             {% if request.user.is_authenticated %}
             {% get_up_menu_login as up_menu %}
             {% else %}
             {% get_up_menu_logout as up_menu %}
             {% endif %}
+
             {% for um in up_menu %}
-            <li><a href="{% url um.url_name %}" style="text-decoration: none; color:#483D8B; ">{{um.title}}</a></li>
+            <li><button onclick="location.href = '{% url um.url_name %}'" class="menu-button">{{um.title}}</button></li>
             {% endfor %}
+
+            <li>
+                <form action="{% url 'search' %}" method="get">
+                    <input name="q" type="text" class="search-input" placeholder="Искать по товарам">
+                </form>
+            </li>
         </ul>
     </header>
-
-    <div id="categories-menu">
-        {% get_categories as categories %}
-        <ul>
-            --- Категории ---
-            {% for c in categories %}
-            <li><a href="{{ c.get_absolute_url }}" style="text-decoration: none; color:#483D8B; ">{{c.name}}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
 
     <main>
         {% block content %}
@@ -55,11 +57,11 @@
         {% get_down_menu as down_menu %}
         <ul>
             {% for dm in down_menu %}
-            <li><a href="{% url dm.url_name %}" style="text-decoration: none; color:#483D8B; ">{{dm.title}}</a></li>
+            <li><a href="{% url dm.url_name %}" class="down-menu-link">{{dm.title}}</a></li>
             {% endfor %}
         </ul>
     </footer>
-
 </body>
+<div class="clearfix"></div>
 
 </html>

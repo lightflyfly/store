@@ -1,13 +1,16 @@
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.cache import cache
-from django.shortcuts import render,  redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from cart.forms import *
 from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 
 
 # кэш - включить на последнем этапе разработки
@@ -163,6 +166,23 @@ class ContactFeedback(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Спасибо за обращение'
         return context
+
+
+@login_required
+def update(request):
+    user = User.objects.get(id=request.user.id)
+    template = loader.get_template('app/update.html')
+    context = {'user': user}
+    return HttpResponse(template.render(context, request))
+
+
+@login_required
+def update_record(request):
+    email = request.POST['email']
+    user = User.objects.get(id=request.user.id)
+    user.email = email
+    user.save()
+    return HttpResponseRedirect(reverse_lazy('private'))
 
 
 def page_not_found(request, *args, **kwargs):

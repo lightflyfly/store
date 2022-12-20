@@ -1,17 +1,21 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-<div class="order-info">
-    <h3>Ваш заказ</h3>
-    {% for item in cart %}
-    {{ item.product.name }} — {{ item.quantity }} шт. — {{ item.total_price }} руб
-    {% endfor %}
-    <p>Итого: {{ cart.get_total_price }} руб.</p>
+<div class="info">
+    <div class="order-info">
+        <h3>Ваш заказ</h3>
+        {% for item in cart %}
+        <p>{{ item.product.name }} — {{ item.quantity }} шт. — {{ item.total_price }} руб.</p>
+        {% endfor %}
+        <p>Итого: {{ cart.get_total_price }} руб.</p>
+    </div>
+    <form action="." method="post" class="order-form">
+        {% for input in form %}
+        <p>{{ input.label_tag }}</p>
+        <p>{{ input }}</p>
+        {% endfor %}
+        <p><input type="submit" value="Заказать"></p>
+        {% csrf_token %}
+    </form>
 </div>
-
-<form action="." method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Заказать"></p>
-    {% csrf_token %}
-</form>
 {% endblock %}

@@ -2,24 +2,25 @@
 
 {% block content %}
 
-<form action="{% url 'search' %}" method="get" class="search-form">
-  <input name="q" type="text" placeholder="Искать по товарам">
-</form>
+{% if products %}
+<div class="product-list">
 
-<div class="search-results">
-  <ul>
-    {% for p in products %}
-    <li>
-      <h2>
-        <p><a href="{{ p.get_absolute_url }}" style="text-decoration: none; color:black; ">{{p.name}}</a></p>
-      </h2>
-      {% if p.image %}
-      <p><a href="{{ p.get_absolute_url }}"><img src="{{p.image.url}}" width="400" border="0"></a></p>
-      {% endif %}
-      <p><a href="{{ p.get_absolute_url }}" style="text-decoration: none; color:black; ">{{p.description}}</a></p>
-      <p><a href="{{ p.get_absolute_url }}" style="text-decoration: none; color:black; ">{{p.price}} руб.</a></p>
-    </li>
-    {% endfor %}
-  </ul>
+  {% for p in products %}
+  <article>
+    <h3>
+      <p><a href="{{ p.get_absolute_url }}" class="product-link">{{p.name}}</a></p>
+    </h3>
+    {% if p.image %}
+    <p><a href="{{ p.get_absolute_url }}"><img src="{{p.image.url}}" width="400"></a></p>
+    {% endif %}
+    <p><a href="{{ p.get_absolute_url }}" class="product-link">{{p.description}}</a></p>
+    <p><a href="{{ p.get_absolute_url }}" class="product-link">{{p.price}} руб.</a></p>
+  </article>
+  {% endfor %}
 </div>
+{% else %}
+<div class="info">
+  <h3>Товары не найдены</h3>
+</div>
+{% endif %}
 {% endblock %}

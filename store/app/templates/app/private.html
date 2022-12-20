@@ -1,11 +1,11 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-<div class="private">
-    Здравствуйте, {{user.username}}
+<div class="info">
+    <p>Здравствуйте, <b>{{user.username}}</b></p>
+    <p>Ваш email: {{user.email}}</p>
+    <button onclick="location.href = '/update'">Изменить email</button>
     <br>
-    <a href="{% url 'orders' %}" style="text-decoration: none; color:#483D8B; ">Мои заказы</a>
-    <br>
-    <a href="{% url 'logout' %}" style="text-decoration: none; color:#483D8B; ">Выйти</a>
+    <button onclick="location.href = '/logout'">Выйти</button>
 </div>
 {% endblock %}

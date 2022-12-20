@@ -12,7 +12,6 @@ def get_categories():
 @register.simple_tag()
 def get_up_menu_logout():
     up_menu = [
-        {'title': "Главная", 'url_name': 'main'},
         {'title': "Корзина", 'url_name': 'cart:cart_detail'},
         {'title': "Войти", 'url_name': 'login'},
     ]
@@ -22,7 +21,6 @@ def get_up_menu_logout():
 @register.simple_tag()
 def get_up_menu_login():
     up_menu = [
-        {'title': "Главная", 'url_name': 'main'},
         {'title': "Личный кабинет", 'url_name': 'private'},
         {'title': "Корзина", 'url_name': 'cart:cart_detail'},
         {'title': "Заказы", 'url_name': 'orders'},
